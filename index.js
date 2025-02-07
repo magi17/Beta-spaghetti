@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5000;
 
 // List of random responses
 const responses = [
@@ -22,6 +22,32 @@ app.get('/random', (req, res) => {
     res.json({ response: randomResponse });
 });
 
+app.get('/user', (req, res) => {
+	const fetchRandomVideo = async () => {
+  const apiUrl = "https://random-use-api-production.up.railway.app/shoti";
+
+  try {
+    const response = await fetch(apiUrl); // Fetch the data
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const re = await response.json(); // Parse the JSON
+    const dats = re.url
+   // const rvids = re.count
+    //const puke = re.data
+    //console.log(rvids); // Use the fetched data
+    console.log(dats);
+    console.log("success")
+
+  } catch (error) {
+    console.error("Error fetching data:", error); // Handle errors
+  }
+};
+
+fetchRandomVideo();
+});
+
+/*
 app.get('/shoti2', (req, res) => {
     // Path to the JSON file
     const filePath = path.join(__dirname, 'shoti.json');
@@ -47,6 +73,7 @@ app.get('/shoti2', (req, res) => {
         }
     });
 });
+*/
 
 
 const data = [
