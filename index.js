@@ -22,6 +22,10 @@ app.get('/random', (req, res) => {
     res.json({ response: randomResponse });
 });
 
+app.get("/video", async function (req, res) {
+res.sendFile(path.join(__dirname, "./video.html"));
+});
+
 app.get('/user', (req, res) => {
 	const fetchRandomVideo = async () => {
   const apiUrl = "https://random-use-api-production.up.railway.app/shoti";
